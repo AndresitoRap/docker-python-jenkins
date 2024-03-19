@@ -1,5 +1,6 @@
-FROM python:3.8-slim
-WORKDIR /app
+FROM python:3.6
 COPY . /app
+WORKDIR /app
 EXPOSE 5000
+ENTRYPOINT ["python"]
 CMD ["python", "app.py"]
