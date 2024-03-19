@@ -1,12 +1,13 @@
-# app.py
-from http.server import HTTPServer, BaseHTTPRequestHandler
+from flask import Flask
+import os
 
-class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(200)
-        self.send_header('Content-type', 'text/plain')
-        self.end_headers()
-        self.wfile.write(b'Hello, world!')
+app = Flask(__name__)
 
-httpd = HTTPServer(('0.0.0.0', 5000), SimpleHTTPRequestHandler)
-httpd.serve_forever()
+@app.route("/")
+def hello():
+    return "Hola mundo desde el docker usando flask"
+
+
+if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+    app.run(debug=True,host='0.0.0.0',port=port)
