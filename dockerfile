@@ -1,6 +1,6 @@
-FROM python:3.6
+FROM python:3
+WORKDIR . /app
 COPY . /app
-WORKDIR /app
-EXPOSE 5000
-ENTRYPOINT ["python"]
-CMD ["python", "app.py"]
+RUN pip install --no-cache-dir -r requirements.txt
+COPY . .
+CMD [ "python", "app.py" ]
