@@ -1,3 +1,5 @@
+import os
+
 html_content="""
 <!DOCTYPE html>
 <html lang="en">
@@ -13,6 +15,9 @@ html_content="""
   </body>
 </html>
 """
+
+ruta_absoluta = "/var/jenkinsubuntu-agent/docker-python/"
+nombre_archivo = os.path.join(ruta_absoluta, "hola_mundo.html")
 
 with open ("hola_mundo .html", "w") as file:
     file.write(html_content)    
