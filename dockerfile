@@ -2,5 +2,7 @@ FROM python:3
 
 COPY . /app
 WORKDIR /app
-COPY . .
+
+EXPOSE 5000
+
 CMD [ "python", "index.py" ]
