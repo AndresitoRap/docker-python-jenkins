@@ -1,7 +1,7 @@
 import os
 from http.server import SimpleHTTPRequestHandler, HTTPServer
 
-html_content="""
+html_content = """
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -17,12 +17,12 @@ html_content="""
 </html>
 """
 
-ruta_absoluta = "/var/jenkinsubuntu-agent/docker-python/"
-nombre_archivo = os.path.join(ruta_absoluta, "hola_mundo.html")
-
 class HTMLServer(SimpleHTTPRequestHandler):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, directory=ruta_absoluta, **kwargs)
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(html_content.encode())
 
 def run(server_class=HTTPServer, handler_class=HTMLServer, port=5000):
     server_address = ('', port)
